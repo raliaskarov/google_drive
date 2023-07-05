@@ -6,11 +6,11 @@ import pickle
 
 
 # ID for google sheets to access
-workbook_id = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-path_to_secrets = "path/to/your/credentials/file.json"
-sheet_name = 'data'
+workbook_id = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+path_to_secrets = "path/to/yourcredentials.json"
+sheet_name = 'name_of_your_sheet'
 
-def read_google_sheets(workbook_id, path_to_secrets):
+def read_google_sheets(workbook_id, sheet_name, path_to_secrets):
     # If modifying these SCOPES, delete the file token.pickle.
     SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
@@ -41,7 +41,7 @@ def read_google_sheets(workbook_id, path_to_secrets):
 
     # Replace 'SPREADSHEET_ID' with your specific Spreadsheet ID
     result = sheet.values().get(spreadsheetId = workbook_id,
-                                range= sheet_name).execute()
+                                range=sheet_name).execute()
     values = result.get('values', [])
 
     if not values:
@@ -51,4 +51,4 @@ def read_google_sheets(workbook_id, path_to_secrets):
     
     return df
 
-read_google_sheets(workbook_id, path_to_secrets)
+read_google_sheets(workbook_id, sheet_name, path_to_secrets)
